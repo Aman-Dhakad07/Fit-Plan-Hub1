@@ -9,6 +9,11 @@ export const CATEGORIES = [
   'General Fitness'
 ];
 
+const API = axios.create({
+  baseURL: API_URL,
+  withCredentials: true, // Important for cookies/sessions if you use them
+});
+
 export const LEVELS = ['Beginner', 'Intermediate', 'Advanced'];
 
 export const ROUTES = {

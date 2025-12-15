@@ -42,7 +42,7 @@ export default function Dashboard() {
         {/* Stat Cards */}
         <div className="bg-white p-6 rounded-lg shadow-sm border">
           <p className="text-gray-500">Your Email</p>
-          <p className="text-lg font-bold truncate">{user.email}</p>
+          <p className="text-gray-500 text-lg font-bold truncate">{user.email}</p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-sm border">
           <p className="text-gray-500">Account Type</p>
@@ -51,7 +51,7 @@ export default function Dashboard() {
       </div>
       
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-bold mb-4">Your Recent Activity</h2>
+        <h2 className="text-xl font-bold mb-4 text-gray-500">Your Recent Activity</h2>
         <p className="text-gray-600">You just logged in! Start a plan to see progress here.</p>
       </div>
     </div>

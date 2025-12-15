@@ -47,16 +47,20 @@ exports.signup = async (req, res) => {
              password:hashPassword,
              role: role || 'user'
     });
-
+           console.log(user);
+    user.save();
+           const userw  = await User.find({});
+                   console.log(userw);
     //Generate token
 
     const token = jwt.sign({
-        id:user_id
+        id:user
     },
      process.env.JWT_SECRET,{
     expiresIn: '30d'
 });
-     
+
+
 res.status(201).json({
     token,
     user :{
@@ -83,6 +87,8 @@ exports.login = async (req, res) => {
 
     try{
         const  {email, password} = req.body;
+                //    console.log(email,password);
+
 
         //Validate the user
         if(!email || !password) {
@@ -93,11 +99,16 @@ exports.login = async (req, res) => {
 
                 // FInd the uer 
         const user  = await User.findOne({email});
+        // const user  = await User.find({});
+                   console.log(user);
+
         if(!user){
             return res.status(401).json({
                 error: "Invlalid Email or Password"
             });
         }
+                   console.log(user);
+
 
         //check password
         const isMatch = await bcrypt.compare(password, user.password);
@@ -127,7 +138,7 @@ exports.login = async (req, res) => {
 
     }
     catch(error){
-        return  res.staus(500).json({
+        return  res.status(500).json({
                   error:"Server Error"
         });
     }

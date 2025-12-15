@@ -11,11 +11,26 @@ export default function PlansPage() {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
+        // 1. Get the token from Local Storage (saved during login)
+        const token = localStorage.getItem("token");
+
+        // 2. If no token, the user isn't logged in. Stop or Redirect.
+        if (!token) {
+            console.log("No token found, user needs to login.");
+            return; 
+        }
         // This grabs the URL from your .env file
         const apiUrl = process.env.NEXT_PUBLIC_API_URL; 
         
         // 1. CALL THE BACKEND
-        const response = await axios.get(`${apiUrl}/plans`);
+        const response = await axios.get(  "http://localhost:5000/api/plans"
+          // `${apiUrl}/plans`
+          , {
+            headers:{
+              Authorization:`Bearer ${token}`,
+            }
+          }
+        );
         
         // 2. STORE THE DATA
         setPlans(response.data);

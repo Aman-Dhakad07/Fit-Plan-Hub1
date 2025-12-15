@@ -16,7 +16,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL; // http://localhost:5000/api
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api" ;
       
       // 1. Send Login Request
       const res = await axios.post(`${apiUrl}/auth/login`, formData);
